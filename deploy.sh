@@ -8,7 +8,7 @@ echo "Building application..."
 trunk build
 
 echo "Copying files to remote server..."
-scp ./dist/* storm-dev.ddns.net:/var/www/html/
+scp ./dist/* storm@storm-dev.ddns.net:/var/www/html/
 
 echo "Reloading Apache..."
 ssh -t storm-dev.ddns.net sudo systemctl reload apache2
