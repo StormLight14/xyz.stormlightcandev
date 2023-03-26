@@ -1,6 +1,6 @@
 use gloo::console::{self};
 use gloo::timers::callback::Interval;
-use yew::{html, Component, Context, Html, SubmitEvent};
+use yew::{html, Component, Context, Html, SubmitEvent, InputEvent};
 
 pub enum Msg {
     UpdateTime,
@@ -16,6 +16,8 @@ pub struct Form {
     review: String,
 }
 
+/* 
+ 
 impl Component for Form {
     type Message = Msg;
     type Properties = ();
@@ -51,23 +53,24 @@ impl Component for Form {
         html! {
             <form onsubmit={|e: SubmitEvent| {
                 e.prevent_default();
-                Msg::Submit
+                ()
             }}>
                 <label for="username">{"Username:"}</label>
-                <input type="text" id="username" name="username" value={self.username} oninput={|e| Msg::UpdateUsername(e.value)}/>
+                <input type="text" id="username" name="username" value={self.username} oninput={|e: InputEvent| Msg::UpdateUsername(e.value)}/>
 
                 <label for="rating">{"Rating:"}</label>
-                <input type="text" id="rating" name="rating" value={self.rating} oninput={|e| Msg::UpdateRating(e.value)}/>
+                <input type="text" id="rating" name="rating" value={self.rating} oninput={|e: InputEvent | Msg::UpdateRating(e.value)}/>
 
                 <label for="review">{"Review:"}</label>
-                <textarea id="text" name="review" value={self.review} oninput={|e| Msg::UpdateReview(e.value)}></textarea>
+                <textarea id="text" name="review" value={self.review} oninput={|e: InputEvent| Msg::UpdateReview(e.value)}></textarea>
 
                 <button type="submit">{"Submit"}</button>
             </form>
         }
     }
 }
-
+*/
+ 
 pub struct App {
     time: String,
     messages: Vec<&'static str>,
@@ -115,7 +118,7 @@ impl Component for App {
         html! {
             <>
                 <div id="wrapper">
-                    <p>{"haiii :3 here's the time yay"}</p>
+                    <p>{"Time"}</p>
                     <div id="time">
                         { &self.time }
                     </div>
@@ -123,7 +126,6 @@ impl Component for App {
                         { for self.messages.iter().map(|message| html! { <p>{ message }</p> }) }
                     </div>
                 </div>
-                <Form />
             </>
         }
     }
